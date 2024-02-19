@@ -4,6 +4,7 @@ import 'package:auditapp/model/audit_model.dart';
 import 'package:auditapp/model/filter_models.dart';
 import 'package:auditapp/service/service_base.dart';
 import 'package:auditapp/utils/database_helper.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
 
@@ -52,32 +53,18 @@ class DataController extends GetxController {
   @override
   void onClose() {}
 
-  getRefreshApi() async {
-    try {
-      isDataLoading(true);
-      final response =
-          await ServiceBase.get(url: ServiceBase.baseUrl, headers: {
-        'Authorization':
-            '68d420488470fb5305cad01a6fc7238cb5737005298daabb8bb4a3ac1c994178~1000003',
-        'Content-Type': 'application/json',
-      });
-      for (var element in response) {
-        userList.add(AuditModel.fromJson(element));
-      }
-    } catch (e) {
-      log('Error while getting data is $e');
-      print('Error while getting data is $e');
-    } finally {
-      isDataLoading(false);
-    }
-  }
-
-  getApi() async {
+  getApi({bool isRefresh = false}) async {
     try {
       isDataLoading(true);
 
       ///for fetch record fromDB
-      userList = await fetchProducts();
+      if (isRefresh) {
+        userList = [];
+        DatabaseHelper.db.deleteTable();
+      } else {
+        userList = await fetchProducts();
+      }
+
       if (userList.isEmpty) {
         userList = [];
         final response =
@@ -99,6 +86,12 @@ class DataController extends GetxController {
     } catch (e) {
       log('Error while getting data is $e');
       print('Error while getting data is $e');
+      Get.snackbar(e.toString(), "",
+          backgroundColor: Colors.blue,
+          duration: 10.seconds,
+          // it could be any reasonable time, but I set it lo-o-ong
+          snackPosition: SnackPosition.BOTTOM,
+          isDismissible: true);
     } finally {
       isDataLoading(false);
     }
