@@ -24,20 +24,15 @@ the most suitable place. This repository is exclusive for opening issues, and
 requesting resources, but feel free to be part of GetX Community.
 
 ## How I can run it?
-🚀 flutter version > 2.0 ,support null safety
-🚀 clone this repository
-🚀 run below code in terminal
+
+- flutter version > 2.0 ,support null safety
+- clone this repository
+- run below code in terminal
 
 flutter pub get
 flutter run
 
 ## Packages
-get: ^4.6.5
-http: ^1.1.1
-sqflite: ^2.0.3
-path_provider: ^2.0.11
-connectivity_plus: ^4.0.1
-intl: ^0.17.0
 
 - [get](https://pub.dev/packages/get) ^4.6.5
 - [http](https://pub.dev/packages/http) ^1.1.1
@@ -49,6 +44,7 @@ intl: ^0.17.0
 
 ## Project structure
 
+````
 lib
  ┣ model
  ┃ ┣ audit_model.dart
