@@ -13,6 +13,7 @@ class DataController extends GetxController {
 
   //filter data
   var statusList = [].obs;
+
   /// default list
   List<ValueItem<User>> auditNameList = [];
   List<ValueItem<User>> auditNumberList = [];
@@ -50,6 +51,26 @@ class DataController extends GetxController {
 
   @override
   void onClose() {}
+
+  getRefreshApi() async {
+    try {
+      isDataLoading(true);
+      final response =
+          await ServiceBase.get(url: ServiceBase.baseUrl, headers: {
+        'Authorization':
+            '68d420488470fb5305cad01a6fc7238cb5737005298daabb8bb4a3ac1c994178~1000003',
+        'Content-Type': 'application/json',
+      });
+      for (var element in response) {
+        userList.add(AuditModel.fromJson(element));
+      }
+    } catch (e) {
+      log('Error while getting data is $e');
+      print('Error while getting data is $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
 
   getApi() async {
     try {
@@ -93,7 +114,7 @@ class DataController extends GetxController {
   }
 
   void insertStatusData() {
-    statusList=[].obs;
+    statusList = [].obs;
     statusList.add(FilterModel(status: 'All', selected: true));
     statusList.add(FilterModel(status: 'Rejected', selected: false));
     statusList.add(FilterModel(status: 'Requested', selected: false));
@@ -102,12 +123,14 @@ class DataController extends GetxController {
   }
 
   Future<List<ValueItem<User>>> fetchNames() async {
-    return  DatabaseHelper.db.getAuditName();
+    return DatabaseHelper.db.getAuditName();
   }
+
   Future<List<ValueItem<User>>> fetchNumber() async {
-    return  DatabaseHelper.db.getAuditNumber();
+    return DatabaseHelper.db.getAuditNumber();
   }
+
   Future<List<ValueItem<User>>> fetchPlant() async {
-    return  DatabaseHelper.db.getPlant();
+    return DatabaseHelper.db.getPlant();
   }
 }
