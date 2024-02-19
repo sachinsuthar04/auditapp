@@ -25,12 +25,17 @@ requesting resources, but feel free to be part of GetX Community.
 
 ## How I can run it?
 
+## Installation
+
 - flutter version > 2.0 ,support null safety
 - clone this repository
-- run below code in terminal
 
- - flutter pub get
- - flutter run
+Run below code in terminal
+
+```sh
+flutter pub get
+flutter run
+```
 
 ## Packages
 
@@ -43,6 +48,8 @@ requesting resources, but feel free to be part of GetX Community.
 
 
 ## Project structure
+
+I use controller for both screen.
 
 ````
 lib
