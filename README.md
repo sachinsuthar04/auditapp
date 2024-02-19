@@ -29,8 +29,8 @@ requesting resources, but feel free to be part of GetX Community.
 - clone this repository
 - run below code in terminal
 
-flutter pub get
-flutter run
+ - flutter pub get
+ - flutter run
 
 ## Packages
 
