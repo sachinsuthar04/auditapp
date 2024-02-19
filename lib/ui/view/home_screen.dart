@@ -1,15 +1,10 @@
 import 'package:auditapp/model/audit_model.dart';
-import 'package:auditapp/model/filter_models.dart';
 import 'package:auditapp/ui/controller/home_controller.dart';
 import 'package:auditapp/ui/view/filter_screen.dart';
 import 'package:auditapp/ui/widget/card_widget.dart';
-import 'package:auditapp/ui/widget/primary_button.dart';
-import 'package:auditapp/ui/widget/text_time_widget.dart';
-import 'package:auditapp/ui/widget/text_value_widget.dart';
 import 'package:auditapp/utils/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () {
-        dataController.getRefreshApi();
+        dataController.getApi(isRefresh: true);
         return Future.value(null);
       },
       child: Scaffold(

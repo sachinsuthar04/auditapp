@@ -42,7 +42,7 @@ class _MultiDropDownWidgetState extends State<MultiDropDownWidget> {
           onOptionSelected: (options) {
             widget.selectedData(options);
           },
-          options: widget.optionItem??[],
+          options: widget.optionItem ?? [],
           singleSelectItemStyle:
               const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           chipConfig: const ChipConfig(
